@@ -30,6 +30,7 @@ int led1 = D0; // Instead of writing D0 over and over again, we'll write led1
 int led2 = D7; // Instead of writing D7 over and over again, we'll write led2
 // This one is the little blue LED on your board. On the Photon it is next to D7, and on the Core it is next to the USB jack.
 int led3 = D1;
+int led4 = D2;
 // Having declared these variables, let's move on to the setup function.
 // The setup function is a standard part of any microcontroller program.
 // It runs only once when the device boots up or is reset.
@@ -47,6 +48,7 @@ void setup() {
   pinMode(led1, OUTPUT);
   pinMode(led2, OUTPUT);
   pinMode(led3, OUTPUT);
+  pinMode(led4, OUTPUT);
 
 }
 
@@ -57,19 +59,17 @@ void setup() {
 void loop() {
   switch (lightState) {
       case 1:
-        // do something
         setPin(1);
         break;
       case 2:
         setPin(2);
         break;
-        // do something
       case 3:
         setPin(3);
-        // do something
         break;
-
-        // do something
+      case 4:
+        setPin(4);
+        break;
   }
   // We'll leave it on for 1 second...
   delay(1000);
@@ -82,21 +82,29 @@ void setPin(int pinNumber) {
           digitalWrite(led1, HIGH);
           digitalWrite(led2, LOW);
           digitalWrite(led3, LOW);
+          digitalWrite(led4, LOW);
           lightState = 2;
           break;
         case 2:
           digitalWrite(led1, LOW);
           digitalWrite(led2, HIGH);
           digitalWrite(led3, LOW);
+          digitalWrite(led4, LOW);
           lightState = 3;
           break;
         case 3:
           digitalWrite(led1, LOW);
           digitalWrite(led2, LOW);
           digitalWrite(led3, HIGH);
+          digitalWrite(led4, LOW);
+          lightState = 4;
+          break;
+        case 4:
+          digitalWrite(led1, LOW);
+          digitalWrite(led2, LOW);
+          digitalWrite(led3, LOW);
+          digitalWrite(led4, HIGH);
           lightState = 1;
           break;
-
-          // do something
     }
 }
