@@ -35,7 +35,7 @@ int led3 = D1;
 // It runs only once when the device boots up or is reset.
 
 // This is where we will have a variable to check the state.
-int lightState = 0;
+int lightState = 1;
 
 void setup() {
 
@@ -68,14 +68,9 @@ void loop() {
         setPin(3);
         // do something
         break;
-      default:
+
         // do something
   }
-  // To blink the LED, first we'll turn it on...
-  digitalWrite(led1, HIGH);
-  digitalWrite(led2, LOW);
-  digitalWrite(led3, HIGH);
-
   // We'll leave it on for 1 second...
   delay(1000);
   // And repeat!
@@ -87,18 +82,21 @@ void setPin(int pinNumber) {
           digitalWrite(led1, HIGH);
           digitalWrite(led2, LOW);
           digitalWrite(led3, LOW);
+          lightState = 2;
           break;
         case 2:
           digitalWrite(led1, LOW);
           digitalWrite(led2, HIGH);
           digitalWrite(led3, LOW);
+          lightState = 3;
           break;
         case 3:
           digitalWrite(led1, LOW);
           digitalWrite(led2, LOW);
           digitalWrite(led3, HIGH);
+          lightState = 1;
           break;
-        default:
+
           // do something
     }
 }
